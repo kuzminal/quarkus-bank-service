@@ -55,4 +55,19 @@ public class BankResource {
     public Boolean getMobileBanking() {
         return mobileBanking.orElse(false);
     }
+
+    @ConfigProperty(name = "username")
+    String username;
+    @ConfigProperty(name = "password")
+    String password;
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/secrets")
+    public Map<String, String> getSecrets() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("username", username);
+        map.put("password", password);
+        return map;
+    }
 }
